@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Medicines</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+
+  <script>
+    function searchProducts() {
+      var input = document.getElementById("search-input");
+      var filter = input.value.toUpperCase();
+      var products = document.getElementsByClassName("product");
+
+      for (var i = 0; i < products.length; i++) {
+        var name = products[i].getElementsByClassName("product-info")[0].getElementsByTagName("h3")[0];
+        var description = products[i].getElementsByClassName("product-info")[0].getElementsByTagName("p")[0];
+
+        if (name.innerHTML.toUpperCase().indexOf(filter) > -1 || description.innerHTML.toUpperCase().indexOf(filter) > -1) {
+          products[i].style.display = "";
+        } else {
+          products[i].style.display = "none";
+        }
+      }
+    }
+
+    var shoppingBag = [];
+
+  function addToBag(product) {
+    shoppingBag.push(product);
+    updateBagCount();
+    updateBagItems();
+    openShoppingBagPage();
+  }
+
+  function removeFromBag(index) {
+    shoppingBag.splice(index, 1);
+    updateBagCount();
+    updateBagItems();
+  }
+
+  function updateBagCount() {
+    var bagCount = document.getElementById("bag-count");
+    bagCount.innerText = shoppingBag.length;
+  }
+
+  function updateBagItems() {
+    var bagItems = document.getElementById("bag-items");
+    bagItems.innerHTML = "";
+    for (var i = 0; i < shoppingBag.length; i++) {
+      var item = document.createElement("div");
+      item.innerText = shoppingBag[i];
+      var removeButton = document.createElement("button");
+      removeButton.innerText = "Remove";
+      removeButton.setAttribute("onclick", "removeFromBag(" + i + ")");
+      item.appendChild(removeButton);
+      bagItems.appendChild(item);
+    }
+  }
+
+ 
+
+  </script>
+
+  
+
+</head>
+<body>
+  <header>
+
+    <div class="logo">
+      <img src="Logo-Pharmacie.jpg" alt="Logo">
+    </div>
+
+    <h1>Medicines</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="medicines.html">Medicines</a></li>
+        <li><a href="cosmetics.html">Cosmetics</a></li>
+        <li><a href="Baby Care.html">Baby Care</a></li>
+        <li><a href="contact.html">Contact</a></li>
+
+        <li class="shopping-bag">
+          <a href="shopping-bag.html">
+            <img src="shoppingbaggreen.png" alt="Shopping Bag">
+            <span id="bag-count"></span>
+          </a>
+        </li>
+
+      </ul>
+    </nav>
+  </header>
+
+  <section>
+    <div class="search-container">
+      <input type="text" id="search-input" placeholder="Search for a product...">
+      <button type="button" onclick="searchProducts()"> Search</button>
+    </div>
+  </section>
+
+  <section>
+    <h2>Our Medicines</h2>
+
+    <div class="product-container">
+
+      <div class="product">
+        <img src="panadoll-removebg-preview.png" alt="Product1">
+        <div class="product-info">
+          <h3>Panadol Advance</h3>
+          <p>32 x 500mg Tablets</p>
+          <button onclick="addToBag('Product 1')">Purchase</button>
+        </div>
+      </div>
+      <div class="product">
+        <img src="nexium-removebg-preview.png" alt="Product 2">
+        <div class="product-info">
+          <h3>Nexium</h3>
+          <p>28 x 40mg Tablets</p>
+          <button onclick="addToBag('Product 1')">Purchase</button>
+        </div>
+      </div>
+      <div class="product">
+        <img src="augmentin-removebg-preview.png" alt="Product 2">
+        <div class="product-info">
+          <h3>Augmentin</h3>
+          <p>14 x 1g Tablets</p>
+          <button onclick="addToBag('Product 1')">Purchase</button>
+        </div>
+      </div>
+      <div class="product">
+        <img src="images-removebg-preview.png" alt="Product 2">
+        <div class="product-info">
+          <h3>Muscerol 2 </h3>
+          <p>20 Tablets</p>
+          <button onclick="addToBag('Product 1')">Purchase</button>
+        </div>
+      </div>
+      <div class="product">
+        <img src="CONCOR-5-removebg-preview.png" alt="Product 2">
+        <div class="product-info">
+          <h3>CONCOR-5</h3>
+          <p>30 x 5mg</p>
+          <button onclick="addToBag('Product 1')">Purchase</button>
+        </div>
+      </div>
+      <div class="product">
+        <img src="meboscar-removebg-preview.png" alt="Product 2">
+        <div class="product-info">
+          <h3>Mebo Scar</h3>
+          <p>cream 30g</p>
+          <button onclick="addToBag('Product 1')">Purchase</button>
+        </div>
+      </div>
+      <div class="product">
+        <img src="prospan-removebg-preview.png" alt="Product 2">
+        <div class="product-info">
+          <h3>Prospan</h3>
+          <p>syrup 100ml</p>
+          <button onclick="addToBag('Product 1')">Purchase</button>
+        </div>
+      </div>
+      <div class="product">
+        <img src="tanakan-removebg-preview.png" alt="Product 2">
+        <div class="product-info">
+          <h3>Tanakan</h3>
+          <p>90 x 40mg</p>
+          <button onclick="addToBag('Product 1')">Purchase</button>
+        </div>
+      </div>
+      <div class="product">
+        <img src="Solpadeine-removebg-preview.png" alt="Product 2">
+        <div class="product-info">
+          <h3>Solpadeine</h3>
+          <p>32 Tablets</p>
+          <button onclick="addToBag('Product 1')">Purchase</button>
+        </div>
+      </div>
+      <div class="product">
+        <img src="oradus-p-removebg-preview.png" alt="Product 2">
+        <div class="product-info">
+          <h3>Oradus P</h3>
+          <p>30 Tablets</p>
+          <button onclick="addToBag('Product 1')">Purchase</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <h2>Our Medicines</h2>
+    <p>We offer a wide range of medicines to treat various health conditions.</p>
+  </section>
+
+  <footer>
+    <p>Contact Information: Email - Sara@pharmacy.com | Phone +961 81702907</p>
+  </footer>
+  
+
+</body>
+</html>

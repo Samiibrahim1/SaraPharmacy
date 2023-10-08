@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cosmetics</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+
+  <script>
+    function searchProducts() {
+      var input = document.getElementById("search-input");
+      var filter = input.value.toUpperCase();
+      var products = document.getElementsByClassName("product");
+
+      for (var i = 0; i < products.length; i++) {
+        var name = products[i].getElementsByClassName("product-info")[0].getElementsByTagName("h3")[0];
+        var description = products[i].getElementsByClassName("product-info")[0].getElementsByTagName("p")[0];
+
+        if (name.innerHTML.toUpperCase().indexOf(filter) > -1 || description.innerHTML.toUpperCase().indexOf(filter) > -1) {
+          products[i].style.display = "";
+        } else {
+          products[i].style.display = "none";
+        }
+      }
+    }
+
+    var shoppingBag = [];
+
+  function addToBag(product) {
+    shoppingBag.push(product);
+    updateBagCount();
+    updateBagItems();
+    openShoppingBagPage();
+  }
+
+  function removeFromBag(index) {
+    shoppingBag.splice(index, 1);
+    updateBagCount();
+    updateBagItems();
+  }
+
+  function updateBagCount() {
+    var bagCount = document.getElementById("bag-count");
+    bagCount.innerText = shoppingBag.length;
+  }
+
+  function updateBagItems() {
+    var bagItems = document.getElementById("bag-items");
+    bagItems.innerHTML = "";
+    for (var i = 0; i < shoppingBag.length; i++) {
+      var item = document.createElement("div");
+      item.innerText = shoppingBag[i];
+      var removeButton = document.createElement("button");
+      removeButton.innerText = "Remove";
+      removeButton.setAttribute("onclick", "removeFromBag(" + i + ")");
+      item.appendChild(removeButton);
+      bagItems.appendChild(item);
+    }
+  }
+
+  
+  </script>
+  
+</head>
+<body>
+  <header>
+
+    <div class="logo">
+      <img src="Logo-Pharmacie.jpg" alt="Logo">
+    </div>
+
+    <h1>Cosmetics</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="medicines.html">Medicines</a></li>
+        <li><a href="cosmetics.html">Cosmetics</a></li>
+        <li><a href="Baby Care.html">Baby Care</a></li>
+        <li><a href="contact.html">Contact</a></li>
+
+        <li class="shopping-bag">
+          <a href="shopping-bag.html">
+            <img src="shoppingbaggreen.png" alt="Shopping Bag">
+            <span id="bag-count"></span>
+          </a>
+        </li>
+        
+
+      </ul>
+    </nav>
+  </header>
+
+  <section>
+    <h2>Our Cosmetics</h2>
+
+    <section>
+      <div class="search-container">
+        <input type="text" id="search-input" placeholder="Search for a product...">
+        <button type="button" onclick="searchProducts()"> Search</button>
+      </div>
+    </section>
+
+    <div class="product-container">
+      <div class="product">
+        <img src="Bioderma-removebg-preview.png" alt="Product 1">
+        <div class="product-info">
+          <h3>Bioderma</h3>
+          <p>Purifying cleansing foaming gel</p>
+          <button onclick="addToBag('Product 1')">Purchase</button>
+        </div>
+      </div>
+      <div class="product">
+        <img src="TheOrdinary-removebg-preview.png" alt="Product 2">
+        <div class="product-info">
+          <h3>TheOrdinary</h3>
+          <p>Peeling Solution</p>
+          <button onclick="addToBag('Product 1')">Purchase</button>
+        </div>
+      </div>
+      <div class="product">
+        <img src="CeraVe-removebg-preview.png" alt="Product 2">
+        <div class="product-info">
+          <h3>CeraVe</h3>
+          <p>Hydrating Cleanser</p>
+          <button onclick="addToBag('Product 1')">Purchase</button>
+        </div>
+      </div>
+      <div class="product">
+        <img src="LA_ROCHE-POSAY-removebg-preview.png" alt="Product 2">
+        <div class="product-info">
+          <h3>LA ROCHE-POSAY</h3>
+          <p>Smoothing Lotion</p>
+          <button onclick="addToBag('Product 1')">Purchase</button>
+        </div>
+      </div>
+      <div class="product">
+        <img src="Massage_Lotion-removebg-preview.png" alt="Product 2">
+        <div class="product-info">
+          <h3>Massage Lotion</h3>
+          <p>Body Lotion</p>
+          <button onclick="addToBag('Product 1')">Purchase</button>
+        </div>
+      </div>
+      <div class="product">
+        <img src="Ducray-removebg-preview.png" alt="Product 2">
+        <div class="product-info">
+          <h3>Ducray</h3>
+          <p>Treatment Shampoo</p>
+          <button onclick="addToBag('Product 1')">Purchase</button>
+        </div>
+      </div>
+
+     
+    </div>
+
+    
+  </section>
+
+  <section>
+    <h2>Our Cosmetics</h2>
+    <p>Discover a wide range of cosmetics to enhance your beauty.</p>
+  </section>
+
+  <footer>
+    <p>Contact Information: Email - Sara@pharmacy.com | Phone +961 81702907</p>
+  </footer>
+  
+</body>
+</html>
